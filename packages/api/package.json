@@ -11,5 +11,14 @@
     "url": "\t\t"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.0",
+    "path": "^0.12.7"
+  }
 }
