@@ -78,6 +78,14 @@ html{
     padding:0px 25px;
 }
 
+     .leftPaneClass{
+        -webkit-transition: class 2s;
+     }
+
+     .rightPaneClass{
+        -webkit-transition: class 2s;
+     }
+
 div#login{
     display:flex;
     flex-flow: column;
@@ -86,7 +94,7 @@ div#login{
 }
 
 .form-btn{
-    background-color: rgb(178,59,67);
+    background-color: rgb(153,49,41);
     color: white;
 }
 
@@ -105,7 +113,7 @@ div#login{
     color:black;
 }
 .btn-light:hover{
-    border-color: rgb(178,59,67);
+    border-color: rgb(153,49,41);
 }
 .top-bar{
     min-height:60px;
@@ -268,11 +276,13 @@ Vue.component('welcome-pane', {
                             Don't have an account?
                         </p>
                     </div>
-                    <button type="button bottom-right"
-                            class="form-btn btn
-                                  btn-light ml-auto flex-end"
-                            @click="this.updateState"
-                    >Signup</button>
+                    <center>
+                        <button type="button bottom-right"
+                                class="form-btn btn
+                                    btn-light ml-auto flex-end"
+                                @click="this.updateState"
+                        >Sign up</button>
+                    </center>
                 </div>
 `
 });
@@ -307,7 +317,7 @@ Vue.component('join-pane', {
                             class="form-btn btn
                                   btn-light ml-auto flex-end"
                             @click="this.updateState"
-                    >Login</button>
+                    >Log in</button>
                 </div>
 `
 });
@@ -360,7 +370,7 @@ Vue.component('signup-pane',{
                     <!-- <form action="/users/login" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8"> -->
                     <form name="login-form" class="login-form" action="" method="post">
                         <div class="form-group">
-                            <h1 class="input-hdr center">Sign up</h1>
+                            <h1 class="input-hdr center">SIGN UP</h1>
                             <div class="input-group">
 
                             <input name="data[User][fullname]"
@@ -386,7 +396,7 @@ Vue.component('signup-pane',{
                         </div>
                         <div class="center form-group">
                             <button type="button " class="form-btn btn
-                btn-light mx-auto">Sign in</button>
+                btn-light mx-auto">Sign up</button>
                         </div>
                     </form>
                 </div>

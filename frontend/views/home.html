@@ -400,7 +400,7 @@ button:hover {
                      <center><button id="page-upload-btn" class="upload-btn form-btn btn
                      btn-light">Upload+</button></center>
                      </div> -->
-                <div id="fileSelector">
+                <div id="fileSelector" v-if="!videoUploaded">
                     <label id="largeFile" for="file">
                         <input type="file"
                             id="file"
@@ -410,8 +410,8 @@ button:hover {
                 <center>
                 <label id="video-name" v-if="videoUploaded">{{videoSrc}}</label>
                 <div v-if="videoUploaded">
-<iframe width="560" height="315" src="https://www.videoindexer.ai/embed/player/00000000-0000-0000-0000-000000000000/9a296c6ec3" frameborder="0" allowfullscreen></iframe>
-<iframe width="680" height="780" src="https://www.videoindexer.ai/embed/insights/00000000-0000-0000-0000-000000000000/9a296c6ec3/?version=2" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.videoindexer.ai/embed/player/00000000-0000-0000-0000-000000000000/9a296c6ec3" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="680" height="780" src="https://www.videoindexer.ai/embed/insights/00000000-0000-0000-0000-000000000000/9a296c6ec3/?version=2" frameborder="0" allowfullscreen></iframe>
 
                 </div>
                 </center>
