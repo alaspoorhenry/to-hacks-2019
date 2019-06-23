@@ -1,6 +1,8 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const user = require("../schema/user.js");
+
+module.exports = function(app) {};
 
 router.get("/users/", (res, req) => {
   user.findOne({}, (err, users) => {
