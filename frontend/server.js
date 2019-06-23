@@ -1,9 +1,19 @@
 // init dependencies
 const mongodb = require("mongodb");
 const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
 const { ObjectID, MongoClient } = require("mongodb");
+const cookie = require("cookie");
+const session = require("express-session");
+const app = express();
+
+app.use(
+  session({
+    secret: "cats",
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 /*
 Add code to initialize driver adn connect to MongoDB Database
@@ -29,10 +39,9 @@ MongoClient.connect(connectionString, { useNewUrlParser: true }, function(
     console.log("ERROR: could not connect:", err);
     return;
   }
-  db = client.db('tohacks');
+  db = client.db("tohacks");
   console.log("Cluster connected!");
 });
-
 
 //Application Routes | Links
 app.use(express.static("public"));
@@ -51,21 +60,22 @@ app.get("/home", function(request, response) {
 });
 
 //DB QUERIES, routes to test that the MongoDB queries are working
-app.get("/testFind", (req, res) => {   
-  db.collection('users').find().toArray((err, result) => {
-      if (err) 
-        return console.log(err)
+app.get("/testFind", (req, res) => {
+  db.collection("users")
+    .find()
+    .toArray((err, result) => {
+      if (err) return console.log(err);
 
       // res.render('index.ejs', {quotes: result})
       console.log(result);
-    })
+    });
 });
 
-app.post("/testSave", (req, res) => {   
+app.post("/testSave", (req, res) => {});
 
-});
+const POST = require("./backend/POST.js");
 
-
+app.use("/api", POST);
 
 //Start server on port 3000
 const listener = app.listen(3000, function() {
