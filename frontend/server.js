@@ -18,6 +18,7 @@ app.use(
   })
 );
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
@@ -56,7 +57,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
-app.use(bodyParser.urlencoded({ extended: true }));
 
 MongoClient.connect(connectionString, { useNewUrlParser: true }, function(
   err,
@@ -107,26 +107,31 @@ app.use("/api", POST);
 app.use("/api", GET);
 
 // keep this here in case of cookie shenanigans
-app.post("/signin/", async function(req, res) {
-  var username = req.body.name;
-  var password = req.body.password;
-  let userReturned = await db.collection("users").findOne({ name: username });
-  if (userReturned === null) {
-    return res.status(500).end("No username found");
+app.post("/api/signin/", async function(req, res) {
+  try {
+    var username = req.body.name;
+    var password = req.body.password;
+    let userReturned = await db.collection("users").findOne({ name: username });
+    if (userReturned === null) {
+      return res.status(500).end("No username found");
+    }
+    //insecure but its a hackathon so could use salted hash
+    if (userReturned.password !== password) {
+      return res.status(401).end("Forbidden due to incorrect credentials");
+    }
+    req.session.user = userReturned._id;
+    res.setHeader(
+      "Set-Cookie",
+      cookie.serialize("user", userReturned._id, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+      })
+    );
+    return res.redirect("/");
+  } catch (err) {
+    console.log(err);
+    return res.status(500).end(err);
   }
-  //insecure but its a hackathon so could use salted hash
-  if (userReturned.password !== req.body.password) {
-    return res.status(401).end("Forbidden due to incorrect credentials");
-  }
-  req.session.user = userReturned._id;
-  res.setHeader(
-    "Set-Cookie",
-    cookie.serialize("user", userReturned._id, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
-    })
-  );
-  return res.json(userReturned);
 });
 
 app.get("/testFind", (req, res) => {
