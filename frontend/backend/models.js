@@ -1,10 +1,10 @@
 // if using images, might be better to pass as a separate param
 class User {
-  constructor(userData) {
-    this.name = userData.name;
-    this.password = userData.password;
-    this.email = userData.email;
-    this.image = userData.image;
+  constructor({ name, password, email, image = null }) {
+    this.name = name;
+    this.password = password;
+    this.email = email;
+    this.image = image;
   }
 }
 

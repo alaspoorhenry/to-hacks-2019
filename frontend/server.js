@@ -83,7 +83,7 @@ app.post("/signup/", async function(req, res) {
   if (!("name" in req.body)) return res.status(400).end("username is missing");
   if (!("password" in req.body))
     return res.status(400).end("password is missing");
-  var username = req.body.username;
+  var username = req.body.name;
   var password = req.body.password;
   let returnedDocument = await db
     .collection("users")
@@ -92,6 +92,7 @@ app.post("/signup/", async function(req, res) {
   if (returnedDocument !== null) {
     return res.status(400).end("ERROR: User names must be unique");
   }
+  console.log(returnedDocument);
   return res.json({ boi: "dasd" });
 });
 
