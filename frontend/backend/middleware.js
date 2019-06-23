@@ -13,7 +13,7 @@ module.exports = {
   },
 
   isAuthenticated: function(req, res, next) {
-    if (!req.session.user) {
+    if (!req.session.user || req.session.user.length === 0) {
       return res.status(401).end("access denied");
     }
     next();

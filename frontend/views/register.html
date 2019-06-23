@@ -1,34 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="main">
-        <header>
-            <h1>Register With Us!</h1>
-            <div class="success"></div>
-        </header>
-        <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-            <input type="text" name="username" class="inp" placeholder="Username" required>
-            <div class="user-icon"></div>
-            <input type="email" name="email" class="inp" placeholder="Email" required>
-            <div class="user-icon"></div>
-            <input type="password" name="pass" class="inp" placeholder="Password" required>
-            <div class="user-icon"></div>
-            <input type="password" name="repass" class="inp" placeholder="Confirm Password">
-            <div class="user-icon"></div>
-            <input type="file" name="avatar" class="inp">
-            <div class="user-icon"></div>
-            <input type="submit" name="submit" value="GET STARTED" class="sub-btn">
-            <div class="user-icon"></div>
-        </form>
+      <header>
+        <h1>Register With Us!</h1>
+        <div class="success"></div>
+      </header>
+      <form
+        action="/api/signup/"
+        method="post"
+        enctype="multipart/form-data"
+        autocomplete="off"
+      >
+        <input
+          type="text"
+          name="name"
+          class="inp"
+          placeholder="Username"
+          required
+        />
+        <div class="user-icon"></div>
+        <input
+          type="email"
+          name="email"
+          class="inp"
+          placeholder="Email"
+          required
+        />
+        <div class="user-icon"></div>
+        <input
+          type="password"
+          name="password"
+          class="inp"
+          placeholder="Password"
+          required
+        />
+        <div class="user-icon"></div>
+        <input
+          type="password"
+          name="repass"
+          class="inp"
+          placeholder="Confirm Password"
+        />
+        <div class="user-icon"></div>
+        <input type="file" name="image" class="inp" />
+        <div class="user-icon"></div>
+        <input
+          type="submit"
+          name="submit"
+          value="GET STARTED"
+          class="sub-btn"
+        />
+        <div class="user-icon"></div>
+      </form>
     </div>
-</body>
-
+  </body>
 </html>

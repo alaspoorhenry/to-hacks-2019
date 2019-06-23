@@ -168,14 +168,17 @@ app.patch("/user/", middleware.isAuthenticated, sUpload, async function(
 });
 
 app.post("/insert", (req, res) => {
-  console.log('starting an insert')
-  let data = {  username: "user2", email: "user2@gmail.com", password: "abc123", image: "/home/lewd/Pictures/kitty-eth.svg" };
-  db.collection("users").insertOne(data, function(err, res) {
-    if (err) 
-      throw err;
-    else
-      console.log("1 document inserted");
-  });  
+  let data = {
+    username: "user1",
+    email: "user1@gmail.com",
+    password: "abc123",
+    image: "/home/lewd/Pictures/kitty-eth.svg"
+  };
+  dbo.collection("users").insertOne(data, function(err, res) {
+    if (err) throw err;
+    else console.log("1 document inserted");
+    db.close();
+  });
 });
 
 //Start server on port 3000
