@@ -8,6 +8,7 @@ const session = require("express-session");
 const multer = require("multer");
 const app = express();
 const middleware = require("./backend/middleware.js");
+const Image = require("./backend/modelMedia");
 
 app.use(
   session({
@@ -150,14 +151,21 @@ app.get("/api/signout/", function(req, res) {
   return res.json("User signed out");
 });
 
+// patching in image
 app.patch("/user/", middleware.isAuthenticated, sUpload, async function(
   req,
   res
 ) {
   try {
     let username = req.body.name;
-    db.collection("user").update({ name: username });
-  } catch (err) {}
+    let image = new Image(req.body, req.file);
+    db.collection("user").update(
+      { name: username },
+      { $set: { image: image } }
+    );
+  } catch (err) {
+    res.status(500).end(err);
+  }
 });
 
 app.post("/insert", (req, res) => {
