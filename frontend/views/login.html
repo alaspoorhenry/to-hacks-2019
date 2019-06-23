@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <form name="login-form" class="login-form" action="" method="post">
-
-        <div class="header">
-            <h1>Welcome</h1>
-            <span>Please, fill this form</span>
-        </div>
-
-        <div class="content">
-            <input name="username" type="text" class="input username" placeholder="Username" />
-            <div class="user-icon"></div>
-            <input name="password" type="password" class="input password" placeholder="Password" />
-            <div class="pass-icon"></div>
-        </div>
-
-        <div class="footer">
-            <a href="#" class="button">Login</a>
-        </div>
-
+  <body>
+    <form
+      name="login-form"
+      class="login-form"
+      action="/api/signin/"
+      method="post"
+    >
+      <div class="header">
+        <h1>Welcome</h1>
+        <span>Please, fill in this form</span>
+      </div>
+      <div class="content">
+        <input
+          name="name"
+          type="text"
+          class="input username"
+          placeholder="Username"
+        />
+        <div class="user-icon"></div>
+        <input
+          name="password"
+          type="password"
+          class="input password"
+          placeholder="Password"
+        />
+        <div class="pass-icon"></div>
+      </div>
+      <div class="footer">
+        <input type="submit" class="button">Login</a>
+      </div>
     </form>
-
-</body>
-
+  </body>
 </html>
