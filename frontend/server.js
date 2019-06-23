@@ -10,14 +10,6 @@ const app = express();
 const middleware = require("./backend/middleware.js");
 const Image = require("./backend/modelMedia");
 
-app.use(
-  session({
-    secret: "cats",
-    resave: false,
-    saveUninitialized: true
-  })
-);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -102,9 +94,11 @@ app.post("/testSave", (req, res) => {});
 
 const POST = require("./backend/POST.js");
 const GET = require("./backend/GET.js");
+const DELETE = require("./backend/DELETE.js");
 
 app.use("/api", POST);
 app.use("/api", GET);
+app.use("/api", DELETE);
 
 // keep this here in case of cookie shenanigans
 app.post("/api/signin/", async function(req, res) {
