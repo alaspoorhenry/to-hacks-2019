@@ -4,84 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <title>Document</title>
+    <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <style>
-     #login img{
-        margin: 10px 0;
-        }
-     #login .center {
-        text-align: center;
-        }
-     /* #login .login {
-        max-width: 300px;
-        margin: 35px auto;
-        } */
-     .mssg-text{
-         background-color: rgb(38,64,120);
-         display:flex;
-         flex-flow: column;
-         height:100%;
-         /* overflow: auto;
-            width:100%; */
-     }
-     .mssg-text-hdr{
-         color:white;
-         font-size: 80pt;
-     }
-     .mssg-text-body{
-         color:white;
-         font-size: 32pt;
-     }
-     .input-hdr{
-         font-size:120pt;
-     }
-     #login .login-form {
-        padding:0px 25px;
-     }
-     #login .
-    </style>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="login" class="container">
+    <div id="login">
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
-                <div class="center">
+                <div class="center mssg-container justify-content-center">
                     <div class="mssg-text">
                         <h1 class="mssg-text-hdr">Welcome Back!</h1>
                         <p class="mssg-text-body">
                             Log in to help us serve you best.
-                            <br/>
+                        </p>
+                        <p class="mssg-text-footer">
                             Don't have an account?
                         </p>
                     </div>
-                    <button type="button" class="form-btn btn btn-light">Signup</button>
+                    <button type="button bottom-right" class="form-btn btn
+                    btn-light ml-auto flex-end">Signup</button>
                 </div>
             </div>
 
             <div class="col-md-7 col-sm-12 col-xs-12">
-                <div class="login well well-sm">
-                    <div class="center">
-                    </div>
+                <div class="login form-container justify-content-center">
+                    <!-- <div class="center">
+                         </div> -->
                     <!-- <form action="/users/login" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8"> -->
                     <form name="login-form" class="login-form" action="" method="post">
                         <div class="form-group">
                             <h1 class="input-hdr center">Log in</h1>
                             <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="data[User][username]" required="required" class="form-control" placeholder="Username" maxlength="255" type="text" id="UserUsername">
+                            <input name="data[User][username]"
+                required="required" class="form-control mx-auto" placeholder="Username" maxlength="255" type="text" id="UserUsername">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input name="data[User][password]" required="required" class="form-control" placeholder="Password" type="password" id="UserPassword">
+                            <input name="data[User][password]"
+                required="required" class="form-control mx-auto" placeholder="Password" type="password" id="UserPassword">
+                            <i class="glyphicon glyphicon-lock"></i>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign in">
+                        <div class="center form-group">
+                            <button type="button " class="form-btn btn
+                btn-light mx-auto">Sign in</button>
                         </div>
                     </form>
                 </div>
