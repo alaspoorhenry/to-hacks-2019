@@ -149,7 +149,7 @@ app.post("/api/signin/", async function(req, res) {
       maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
     })
   );
-  return res.redirect("/");
+  return res.redirect("/home/");
 });
 
 app.get("/testFind", (req, res) => {
@@ -192,14 +192,17 @@ app.patch("/user/", middleware.isAuthenticated, sUpload, async function(
 });
 
 app.post("/insert", (req, res) => {
-  console.log('starting an insert')
-  let data = {  username: "user2", email: "user2@gmail.com", password: "abc123", image: "/home/lewd/Pictures/kitty-eth.svg" };
+  console.log("starting an insert");
+  let data = {
+    username: "user2",
+    email: "user2@gmail.com",
+    password: "abc123",
+    image: "/home/lewd/Pictures/kitty-eth.svg"
+  };
   db.collection("users").insertOne(data, function(err, res) {
-    if (err) 
-      throw err;
-    else
-      console.log("1 document inserted");
-  });  
+    if (err) throw err;
+    else console.log("1 document inserted");
+  });
 });
 
 //Start server on port 3000
