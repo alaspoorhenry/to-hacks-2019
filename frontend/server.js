@@ -125,6 +125,23 @@ app.use("/api", POST);
 app.use("/api", GET);
 app.use("/api", DELETE);
 
+app.post("/api/text/", async function(req, res) {
+  let body = req.body.text;
+  let input = {
+    documents: [{ language: "en", id: "1", text: body.replace(/["]+/g, "") }]
+  };
+  const operation = client.sentiment({
+    multiLanguageBatchInput: input
+  });
+  operation
+    .then(result => {
+      return res.json(result);
+    })
+    .catch(err => {
+      return res.json(err);
+    });
+});
+
 app.post("/api/news/", async function(req, res) {
   let url = req.body.url;
   let rawDom;
