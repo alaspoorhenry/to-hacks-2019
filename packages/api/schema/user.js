@@ -1,12 +1,13 @@
-var mongoose = require("mongoose");
-var bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
     first: String,
     email: { type: String, unique: true },
     password: String,
-    image: String
+    image: String,
+    history: [String] //possibly change this later
   },
   { timestamps: true }
 );
@@ -14,7 +15,7 @@ const userSchema = new mongoose.Schema(
 userSchema.pre(
   "save",
   function(next) {
-    var user = this;
+    let user = this;
     if (!user.isModified("password")) {
       return next();
     }

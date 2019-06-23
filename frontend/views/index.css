@@ -38,24 +38,24 @@ margin: 35px auto;
 }
 .mssg-text-hdr{
     color:white;
-    font-size: 54pt;
+    font-size: 54px;
     font-family: 'Merriweather', serif;
 }
 .mssg-text-body{
     color:white;
-    font-size: 32pt;
+    font-size: 32px;
     font-family: 'Source Sans Pro', sans-serif;
 }
 .mssg-text-footer{
     color:white;
-    font-size: 32pt;
+    font-size: 32px;
     font-family: 'Source Sans Pro', sans-serif;
 }
 .text-body{
   font-family: 'Merriweather', serif;
 }
 .input-hdr{
-    font-size:120pt;
+    font-size:120px;
     font-family: 'Merriweather', serif;
     padding: 0px 10px;
 }
