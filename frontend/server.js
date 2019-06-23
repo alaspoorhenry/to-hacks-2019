@@ -12,7 +12,20 @@ const Image = require("./backend/modelMedia");
 const axios = require("axios");
 const htmlArticleExtractor = require("html-article-extractor");
 const jsdom = require("jsdom");
+const request = require("request");
+const CognitiveServicesCredentials = require("ms-rest-azure")
+  .CognitiveServicesCredentials;
+const TextAnalyticsAPIClient = require("azure-cognitiveservices-textanalytics");
 const { JSDOM } = jsdom;
+
+let credentials = new CognitiveServicesCredentials(
+  "a93f0a47ddbf49139bba3d4cca3fdd90"
+);
+
+let client = new TextAnalyticsAPIClient(
+  credentials,
+  "https://eastus.api.cognitive.microsoft.com/"
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -122,7 +135,21 @@ app.post("/api/news/", async function(req, res) {
       let dom = new JSDOM(rawDom);
       let body = dom.window.document.body;
       let result = htmlArticleExtractor(body);
-      console.log(result.text);
+      let bodyOne = {
+        documents: [
+          { language: "en", id: "1", text: result.text.replace(/['"]+/g, "") }
+        ]
+      };
+      const operation = client.sentiment({
+        multiLanguageBatchInput: bodyOne
+      });
+      operation
+        .then(result => {
+          console.log(result.documents);
+        })
+        .catch(err => {
+          throw err;
+        });
     })
     .catch(error => {
       res.status(500).end(error);
