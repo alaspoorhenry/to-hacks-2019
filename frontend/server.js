@@ -22,16 +22,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-  req.user = req.session.user ? req.session.user : null;
-  req.username = req.user ? req.user._id : "";
-  var username = req.user ? req.user._id : "";
-  res.setHeader(
-    "Set-Cookie",
-    cookie.serialize("username", username, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
-    })
-  );
+  // req.user = req.session.user ? req.session.user : null;
+  // req.username = req.user ? req.user._id : "";
+  // var username = req.user ? req.user._id : "";
+  // res.setHeader(
+  //   "Set-Cookie",
+  //   cookie.serialize("user", username, {
+  //     path: "/",
+  //     maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+  //   })
+  // );
   console.log("HTTP request", req.username, req.method, req.url, req.body);
   next();
 });

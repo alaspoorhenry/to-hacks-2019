@@ -26,9 +26,7 @@ router.post("/signup/", async function(req, res) {
 router.post("/media/", middleware.isAuthenticated, async function(req, res) {
   try {
     const mediaToInsert = new Media(req.body);
-    const OID = ObjectID();
     db.collection("media").insert({
-      _id: OID,
       ...mediaToInsert,
       usernameID: req.session.user
     });
