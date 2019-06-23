@@ -15,6 +15,8 @@ app.use(
   })
 );
 
+app.use(bodyParser.json());
+
 /*
 Add code to initialize driver adn connect to MongoDB Database
 */
@@ -76,6 +78,22 @@ app.post("/testSave", (req, res) => {});
 const POST = require("./backend/POST.js");
 
 app.use("/api", POST);
+
+app.post("/signup/", async function(req, res) {
+  if (!("name" in req.body)) return res.status(400).end("username is missing");
+  if (!("password" in req.body))
+    return res.status(400).end("password is missing");
+  var username = req.body.username;
+  var password = req.body.password;
+  let returnedDocument = await db
+    .collection("users")
+    .findOne({ name: username });
+  console.log(returnedDocument);
+  if (returnedDocument !== null) {
+    return res.status(400).end("ERROR: User names must be unique");
+  }
+  return res.json({ boi: "dasd" });
+});
 
 //Start server on port 3000
 const listener = app.listen(3000, function() {

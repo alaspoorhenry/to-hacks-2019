@@ -3,7 +3,6 @@ var router = express.Router();
 const User = require("./models.js");
 
 router.post("/signup/", (req, res) => {
-  console.log(req.body);
   if (!("name" in req.body)) return res.status(400).end("username is missing");
   if (!("password" in req.body))
     return res.status(400).end("password is missing");
