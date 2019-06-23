@@ -17,6 +17,21 @@ app.use(
 
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+  req.user = req.session.user ? req.session.user : null;
+  req.username = req.user ? req.user._id : "";
+  var username = req.user ? req.user._id : "";
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("username", username, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+    })
+  );
+  console.log("HTTP request", req.username, req.method, req.url, req.body);
+  next();
+});
+
 /*
 Add code to initialize driver adn connect to MongoDB Database
 */
@@ -79,21 +94,27 @@ const POST = require("./backend/POST.js");
 
 app.use("/api", POST);
 
-app.post("/signup/", async function(req, res) {
-  if (!("name" in req.body)) return res.status(400).end("username is missing");
-  if (!("password" in req.body))
-    return res.status(400).end("password is missing");
+// keep this here in case of cookie shenanigans
+app.post("/signin/", async function(req, res) {
   var username = req.body.name;
   var password = req.body.password;
-  let returnedDocument = await db
-    .collection("users")
-    .findOne({ name: username });
-  console.log(returnedDocument);
-  if (returnedDocument !== null) {
-    return res.status(400).end("ERROR: User names must be unique");
+  let userReturned = await db.collection("users").findOne({ name: username });
+  if (userReturned === null) {
+    return res.status(500).end("No username found");
   }
-  console.log(returnedDocument);
-  return res.json({ boi: "dasd" });
+  //insecure but its a hackathon so could use salted hash
+  if (userReturned.password !== req.body.password) {
+    return res.status(401).end("Forbidden due to incorrect credentials");
+  }
+  req.session.user = userReturned._id;
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("user", userReturned._id, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+    })
+  );
+  return res.json(userReturned);
 });
 
 //Start server on port 3000

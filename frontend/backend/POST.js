@@ -20,14 +20,9 @@ router.post("/signup/", async function(req, res) {
   return res.redirect("/");
 });
 
-router.post("/users/", (req, res) => {
-  userData = {
-    name: "dog",
-    password: "frog",
-    email: "email",
-    image: "boi"
-  };
-  return res.json(new User(userData));
+router.post("/signin/", async function(req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
 });
 
 module.exports = router;
