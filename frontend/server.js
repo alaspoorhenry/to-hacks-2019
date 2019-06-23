@@ -117,6 +117,29 @@ app.post("/signin/", async function(req, res) {
   return res.json(userReturned);
 });
 
+app.get("/testFind", (req, res) => {
+  db.collection("users")
+    .find()
+    .toArray((err, result) => {
+      if (err) return console.log(err);
+      else console.log(result);
+    });
+});
+
+app.post("/insert", (req, res) => {
+  let data = {
+    username: "user1",
+    email: "user1@gmail.com",
+    password: "abc123",
+    image: "/home/lewd/Pictures/kitty-eth.svg"
+  };
+  dbo.collection("users").insertOne(data, function(err, res) {
+    if (err) throw err;
+    else console.log("1 document inserted");
+    db.close();
+  });
+});
+
 //Start server on port 3000
 const listener = app.listen(3000, function() {
   console.log("Your app is listening on port " + 3000);
