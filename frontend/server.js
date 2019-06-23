@@ -29,8 +29,10 @@ MongoClient.connect(connectionString, { useNewUrlParser: true }, function(
     console.log("ERROR: could not connect:", err);
     return;
   }
+  db = client.db('tohacks');
   console.log("Cluster connected!");
 });
+
 
 //Application Routes | Links
 app.use(express.static("public"));
@@ -49,12 +51,21 @@ app.get("/home", function(request, response) {
 });
 
 //DB QUERIES, routes to test that the MongoDB queries are working
-app.get("/attendees", (req, res) => {
-  mysqlConnection.query("SELECT * FROM Users", (err, rows, fields) => {
-    if (!err) console.log(rows);
-    else console.log(err);
-  });
+app.get("/testFind", (req, res) => {   
+  db.collection('users').find().toArray((err, result) => {
+      if (err) 
+        return console.log(err)
+
+      // res.render('index.ejs', {quotes: result})
+      console.log(result);
+    })
 });
+
+app.post("/testSave", (req, res) => {   
+
+});
+
+
 
 //Start server on port 3000
 const listener = app.listen(3000, function() {
