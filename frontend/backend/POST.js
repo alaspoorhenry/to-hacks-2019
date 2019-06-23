@@ -1,6 +1,8 @@
-var express = require("express");
-var router = express.Router();
-const User = require("./models.js");
+const express = require("express");
+const router = express.Router();
+const User = require("./modelUser.js");
+const Media = require("./modelMedia.js");
+const { ObjectID } = require("mongodb");
 
 // expect username and password and email for signup
 router.post("/signup/", async function(req, res) {
@@ -20,9 +22,14 @@ router.post("/signup/", async function(req, res) {
   return res.redirect("/");
 });
 
-router.post("/signin/", async function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
+router.post("/media/", async function(req, res) {
+  try {
+    const mediaToInsert = new Media(req.body);
+    const OID = ObjectID();
+    db.collection("media").insert({ _id: OID, ...mediaToInsert });
+  } catch (err) {
+    return res.status(500).end(err);
+  }
 });
 
 module.exports = router;

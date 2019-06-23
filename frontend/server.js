@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const { ObjectID, MongoClient } = require("mongodb");
 const cookie = require("cookie");
 const session = require("express-session");
+const multer = require("multer");
 const app = express();
 
 app.use(
@@ -38,6 +39,13 @@ Add code to initialize driver adn connect to MongoDB Database
 
 const connectionString =
   "mongodb+srv://admin:12345@firstcluster-trvlr.azure.mongodb.net/tohacks";
+
+// avatar middleware, I dunno if it works
+const storage = require("multer-gridfs-storage")({
+  url: connectionString
+});
+const upload = multer({ storage: storage });
+const sUpload = upload.single("image");
 
 // response header setter
 app.use((req, res, next) => {
