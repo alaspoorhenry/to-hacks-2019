@@ -145,10 +145,10 @@ app.post("/api/news/", async function(req, res) {
       });
       operation
         .then(result => {
-          console.log(result.documents);
+          return res.json(result);
         })
         .catch(err => {
-          throw err;
+          return res.json(err);
         });
     })
     .catch(error => {
