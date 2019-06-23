@@ -9,21 +9,33 @@ const multer = require("multer");
 const app = express();
 const middleware = require("./backend/middleware.js");
 const Image = require("./backend/modelMedia");
+const axios = require("axios");
+const htmlArticleExtractor = require("html-article-extractor");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(
+  session({
+    secret: "cats",
+    resave: false,
+    saveUninitialized: true
+  })
+);
+
 app.use(function(req, res, next) {
-  // req.user = req.session.user ? req.session.user : null;
-  // req.username = req.user ? req.user._id : "";
-  // var username = req.user ? req.user._id : "";
-  // res.setHeader(
-  //   "Set-Cookie",
-  //   cookie.serialize("user", username, {
-  //     path: "/",
-  //     maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
-  //   })
-  // );
+  req.user = req.session.user ? req.session.user : null;
+  req.username = req.user ? req.user._id : "";
+  var username = req.user ? req.user._id : "";
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("username", username, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+    })
+  );
   console.log("HTTP request", req.username, req.method, req.url, req.body);
   next();
 });
@@ -100,32 +112,44 @@ app.use("/api", POST);
 app.use("/api", GET);
 app.use("/api", DELETE);
 
+app.post("/api/news/", async function(req, res) {
+  let url = req.body.url;
+  let rawDom;
+  axios
+    .get(url)
+    .then(response => {
+      rawDom = response.data;
+      let dom = new JSDOM(rawDom);
+      let body = dom.window.document.body;
+      let result = htmlArticleExtractor(body);
+      console.log(result.text);
+    })
+    .catch(error => {
+      res.status(500).end(error);
+    });
+});
+
 // keep this here in case of cookie shenanigans
 app.post("/api/signin/", async function(req, res) {
-  try {
-    var username = req.body.name;
-    var password = req.body.password;
-    let userReturned = await db.collection("users").findOne({ name: username });
-    if (userReturned === null) {
-      return res.status(500).end("No username found");
-    }
-    //insecure but its a hackathon so could use salted hash
-    if (userReturned.password !== password) {
-      return res.status(401).end("Forbidden due to incorrect credentials");
-    }
-    req.session.user = userReturned._id;
-    res.setHeader(
-      "Set-Cookie",
-      cookie.serialize("user", userReturned._id, {
-        path: "/",
-        maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
-      })
-    );
-    return res.redirect("/");
-  } catch (err) {
-    console.log(err);
-    return res.status(500).end(err);
+  var username = req.body.name;
+  var password = req.body.password;
+  let userReturned = await db.collection("users").findOne({ name: username });
+  if (userReturned === null) {
+    return res.status(500).end("No username found");
   }
+  //insecure but its a hackathon so could use salted hash
+  if (userReturned.password !== password) {
+    return res.status(401).end("Forbidden due to incorrect credentials");
+  }
+  req.session.user = userReturned._id;
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("user", userReturned._id, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+    })
+  );
+  return res.redirect("/");
 });
 
 app.get("/testFind", (req, res) => {
