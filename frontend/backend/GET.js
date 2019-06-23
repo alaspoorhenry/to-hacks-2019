@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Media = require("./modelMedia.js");
 const User = require("./modelUser.js");
+const middleware = require("./middleware");
 
 router.get("/media/", async function(req, res) {
   let media = await db
@@ -16,7 +17,10 @@ router.get("/media/", async function(req, res) {
 });
 
 // find results given userID from cookie
-router.get("/media/:userID/", async function(req, res) {
+router.get("/media/:userID/", middleware.isAuthenticated, async function(
+  req,
+  res
+) {
   const userID = req.params.userID;
   let media = await db
     .collection("media")

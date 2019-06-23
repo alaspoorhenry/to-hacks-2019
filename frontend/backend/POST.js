@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("./modelUser.js");
 const Media = require("./modelMedia.js");
 const { ObjectID } = require("mongodb");
+const middleware = require("./middleware");
 
 // expect username and password and email for signup
 router.post("/signup/", async function(req, res) {
@@ -22,11 +23,27 @@ router.post("/signup/", async function(req, res) {
   return res.redirect("/");
 });
 
-router.post("/media/", async function(req, res) {
+router.post("/media/", middleware.isAuthenticated, async function(req, res) {
   try {
     const mediaToInsert = new Media(req.body);
     const OID = ObjectID();
-    db.collection("media").insert({ _id: OID, ...mediaToInsert });
+    db.collection("media").insert({
+      _id: OID,
+      ...mediaToInsert,
+      usernameID: req.session.user
+    });
+  } catch (err) {
+    return res.status(500).end(err);
+  }
+});
+
+router.post("/media/", middleware.isAuthenticated, async function(req, res) {
+  try {
+    const mediaToInsert = new Media(req.body);
+    db.collection("media").insert({
+      ...mediaToInsert,
+      usernameID: req.session.user
+    });
   } catch (err) {
     return res.status(500).end(err);
   }

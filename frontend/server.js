@@ -7,6 +7,7 @@ const cookie = require("cookie");
 const session = require("express-session");
 const multer = require("multer");
 const app = express();
+const middleware = require("./backend/middleware.js");
 
 app.use(
   session({
@@ -146,7 +147,17 @@ app.get("/api/signout/", function(req, res) {
       maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
     })
   );
-  return res.json("user signed out");
+  return res.json("User signed out");
+});
+
+app.patch("/user/", middleware.isAuthenticated, sUpload, async function(
+  req,
+  res
+) {
+  try {
+    let username = req.body.name;
+    db.collection("user").update({ name: username });
+  } catch (err) {}
 });
 
 app.post("/insert", (req, res) => {
