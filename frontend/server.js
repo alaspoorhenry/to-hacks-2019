@@ -99,8 +99,10 @@ app.get("/testFind", (req, res) => {
 app.post("/testSave", (req, res) => {});
 
 const POST = require("./backend/POST.js");
+const GET = require("./backend/GET.js");
 
 app.use("/api", POST);
+app.use("/api", GET);
 
 // keep this here in case of cookie shenanigans
 app.post("/signin/", async function(req, res) {
@@ -132,6 +134,19 @@ app.get("/testFind", (req, res) => {
       if (err) return console.log(err);
       else console.log(result);
     });
+});
+
+app.get("/api/signout/", function(req, res) {
+  req.session.destroy();
+  // sets this cookie to empty
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("user", "", {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
+    })
+  );
+  return res.json("user signed out");
 });
 
 app.post("/insert", (req, res) => {

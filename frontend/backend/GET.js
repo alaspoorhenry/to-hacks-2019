@@ -14,3 +14,19 @@ router.get("/media/", async function(req, res) {
   // paginated by 5
   return res.json(media.slice(0, 4));
 });
+
+// find results given userID from cookie
+router.get("/media/:userID/", async function(req, res) {
+  const userID = req.params.userID;
+  let media = await db
+    .collection("media")
+    .find({ usernameID: userID })
+    .toArray();
+  media = media.sort(
+    (elementOne, elementTwo) => elementOne.date - elementTwo.date
+  );
+  // paginated by 5
+  return res.json(media.slice(0, 4));
+});
+
+module.exports = router;
