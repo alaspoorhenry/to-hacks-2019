@@ -20,9 +20,216 @@
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./index.css" />
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- <link rel="stylesheet" href="/views/index.css" /> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <style>
+
+html{
+    width:100%;
+    height:100%;
+    min-height:100%;
+}
+#login img{
+    margin: 10px 0;
+}
+#login .center {
+    text-align: center;
+}
+.form-control{
+    max-width:300px;
+}
+.mssg-container{
+    background-color: rgb(38,64,120);
+    display:flex;
+    flex-flow: column;
+    height:100vh;
+    padding: 0px 25px;
+}
+
+.form-container{
+    display:flex;
+    flex-flow: column;
+    height:100vh;
+}
+.mssg-text-hdr{
+    color:white;
+    font-size: 54px;
+    font-family: 'Merriweather', serif;
+}
+.mssg-text-body{
+    color:white;
+    font-size: 32px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.mssg-text-footer{
+    color:white;
+    font-size: 32px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.text-body{
+  font-family: 'Merriweather', serif;
+}
+.input-hdr{
+    font-size:120px;
+    font-family: 'Merriweather', serif;
+    padding: 0px 10px;
+}
+#login .login-form {
+    padding:0px 25px;
+}
+
+     .leftPaneClass{
+        -webkit-transition: class 2s;
+     }
+
+     .rightPaneClass{
+        -webkit-transition: class 2s;
+     }
+
+div#login{
+    display:flex;
+    flex-flow: column;
+    height:100%;
+    min-height:100%;
+}
+
+.form-btn{
+    background-color: rgb(153,49,41);
+    color: white;
+}
+
+.bottom-right{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.grey-text{
+    color: grey;
+}
+
+.form-btn::hover{
+    background-color: white;
+    color:black;
+}
+.btn-light:hover{
+    border-color: rgb(153,49,41);
+}
+.top-bar{
+    min-height:60px;
+    height:60px;
+    background-color: rgb(38,64,120);
+}
+.site-name{
+    color:white;
+    font-size: 28px;
+    float:left;
+    font-family: 'Merriweather', serif;
+    margin-left: 30px;
+    margin-top:10px;
+}
+.side-bar{
+    background-color: rgb(233,233,233);
+    min-height:100vh;
+}
+
+.main-content{
+    min-height:100vh;
+}
+
+.upload-btn{
+    margin-top: 40px;
+    height:60px;
+    width: 120px;
+}
+
+.h-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ margin-left:2px;
+ margin-right:2px;
+ height:1px;
+ width:100%;
+ border-top:1px solid black;
+}
+
+.home-icon{
+    background-image:"../../media/icons/home.svg";
+    height:2px;
+    width:2px;
+    margin-left:5px;
+}
+
+.page-header{
+    margin-top:50px;
+    font-size:54px;
+}
+
+.inner-page-header{
+    margin-top:25px;
+    font-size: 36px;
+}
+
+#upload-vid-btn-container{
+    background-color:rgb(233,233,233);
+    height:250px;
+    width:90%;
+}
+.page-content{
+    margin-left: 50px;
+}
+#page-upload-btn{
+
+}
+h3.nav-link{
+    font-size:18px;
+}
+
+
+* {border:0;outline:0;}
+
+label#largeFile:after {
+  position:absolute;
+  width:60%;
+  max-width:800px;
+  content:"Upload your file";
+  left:0;
+  right:0;
+  margin:50px auto;
+  text-align:center;
+  padding:50px 0px 50px 0px;
+  border-radius:10px;
+  border:5px dashed #ccc;
+  color:#ccc;
+  font-family:"Helvetica Neue", Helvetica, Arial;
+  font-size:30px;
+}
+
+label#largeFile:hover:after {
+  background:#ccc;
+  color:#fff;
+  cursor:pointer;
+}
+
+
+label#largeFile input#file {
+    width: 0px;
+    height: 0px;
+}
+
+#fileSelector{
+    width:100%;
+    height:50vh;
+}
+
+#hidden-file-selector{
+    display:none;
+}
+
+
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
       rel="stylesheet"
@@ -44,6 +251,188 @@
         </div>
       </div>
     </div>
-    <script src="./app.js"></script>
+    <script>
+Vue.component('welcome-pane', {
+    data: function(){
+        return {
+            welcomeHeader: "WELCOME BACK",
+            welcomeText: "Log in to help us serve you best.",
+        };
+    },
+    methods: {
+        updateState(){
+            this.$emit('change-state');
+        }
+    },
+    template: `
+
+                <div class="center mssg-container justify-content-center">
+                    <div class="mssg-text">
+                        <h1 class="mssg-text-hdr">{{welcomeHeader}}</h1>
+                        <p class="mssg-text-body">
+                            {{welcomeText}}
+                        </p>
+                        <p class="mssg-text-footer">
+                            Don't have an account?
+                        </p>
+                    </div>
+                    <center>
+                        <button type="button bottom-right"
+                                class="form-btn btn
+                                    btn-light ml-auto flex-end"
+                                @click="this.updateState"
+                        >Sign up</button>
+                    </center>
+                </div>
+`
+});
+
+Vue.component('join-pane', {
+    data: function(){
+        return {
+            joinHeader: "JOIN US",
+            joinText: "Become a part of the community today.",
+            loginState: true
+        };
+    },
+    methods: {
+        updateState(){
+            this.$emit('change-state');
+            console.log("mongoose");
+        }
+    },
+    template: `
+
+                <div class="center mssg-container justify-content-center">
+                    <div class="mssg-text">
+                        <h1 class="mssg-text-hdr">{{joinHeader}}</h1>
+                        <p class="mssg-text-body">
+                            {{joinText}}
+                        </p>
+                        <p class="mssg-text-footer">
+                            Have an account?
+                        </p>
+                    </div>
+                    <button type="button bottom-right"
+                            class="form-btn btn
+                                  btn-light ml-auto flex-end"
+                            @click="this.updateState"
+                    >Log in</button>
+                </div>
+`
+});
+
+
+Vue.component('login-pane',{
+
+    data: function(){
+        return{
+
+        };
+    },
+    template:`
+                <div class="login form-container justify-content-center">
+                    <!-- <div class="center">
+                         </div> -->
+                    <!-- <form action="/api/signin" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8"> -->
+                    <form name="login-form" class="login-form" action="" method="post">
+                        <div class="form-group">
+                            <h1 class="input-hdr center">LOG IN</h1>
+                            <div class="input-group">
+                            <input name="name"
+                required="required" class="form-control mx-auto" placeholder="Username" maxlength="255" type="text" id="UserUsername">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                            <input name="password"
+                required="required" class="form-control mx-auto" placeholder="Password" type="password" id="UserPassword">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            </div>
+                            <center><a href=""><p class="grey-text"><i>Forgot your password?</i></p></a></center>
+                        </div>
+                        <div class="center form-group">
+                            <button type="button " class="form-btn btn
+                btn-light mx-auto">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+
+`
+});
+
+Vue.component('signup-pane',{
+
+    template:`
+                <div class="login form-container justify-content-center">
+                    <!-- <div class="center">
+                         </div> -->
+                    <!-- <form action="/users/login" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8"> -->
+                    <form name="login-form" class="login-form" action="" method="post">
+                        <div class="form-group">
+                            <h1 class="input-hdr center">SIGN UP</h1>
+                            <div class="input-group">
+
+                            <input name="data[User][fullname]"
+                required="required" class="form-control mx-auto"
+ placeholder="Full Name" maxlength="255" type="text" id="UserFullname">
+
+                           <input name="data[User][password]"
+                required="required" class="form-control mx-auto" placeholder="Password" type="password" id="UserRepeatPassword">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                            <input name="data[User][email]"
+                required="required" class="form-control mx-auto" placeholder="Email" type="email" id="UserEmail">
+                           <input name="data[User][password]"
+                required="required" class="form-control mx-auto"
+ placeholder="Repeat Password" type="password" id="UserPasswordConfirm">
+
+
+                            <i class="glyphicon glyphicon-lock"></i>
+                            </div>
+                        </div>
+                        <div class="center form-group">
+                            <button type="button " class="form-btn btn
+                btn-light mx-auto">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+
+`
+});
+
+
+let app = new Vue({
+    el: "#login",
+    data: {
+        currentLayout: 0,
+        loginState: true,
+        leftPaneClassState1:  "col-md-5 col-sm-12 col-xs-12",
+        leftPaneClassState2:  "col-md-8 col-sm-12 col-xs-12",
+        rightPaneClassState1: "col-md-7 col-sm-12 col-xs-12",
+        rightPaneClassState2: "col-md-4 col-sm-12 col-xs-12"
+
+    },
+    computed:{
+        leftPaneClass(){
+            return this.loginState ? this.leftPaneClassState1 :
+                this.leftPaneClassState2;
+        },
+        rightPaneClass() {
+            return this.loginState ? this.rightPaneClassState1 :
+                this.rightPaneClassState2;
+        }
+    },
+    methods: {
+        changeState(){
+            this.loginState = !this.loginState;
+        }
+    },
+});
+
+    </script>
   </body>
 </html>
