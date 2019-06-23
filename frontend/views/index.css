@@ -38,8 +38,8 @@ margin: 35px auto;
 }
 .mssg-text-hdr{
     color:white;
-    font-size: 80pt;
-    font-family:'Source Sans Pro', sans-serif;
+    font-size: 54pt;
+    font-family: 'Merriweather', serif;
 }
 .mssg-text-body{
     color:white;
@@ -56,7 +56,8 @@ margin: 35px auto;
 }
 .input-hdr{
     font-size:120pt;
-    font-family:'Source Sans Pro', sans-serif;
+    font-family: 'Merriweather', serif;
+    padding: 0px 10px;
 }
 #login .login-form {
     padding:0px 25px;

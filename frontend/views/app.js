@@ -1,7 +1,7 @@
 Vue.component('welcome-pane', {
     data: function(){
         return {
-            welcomeHeader: "Welcome Back!",
+            welcomeHeader: "WELCOME BACK",
             welcomeText: "Log in to help us serve you best.",
         };
     },
@@ -34,7 +34,7 @@ Vue.component('welcome-pane', {
 Vue.component('join-pane', {
     data: function(){
         return {
-            joinHeader: "Join us",
+            joinHeader: "JOIN US",
             joinText: "Become a part of the community today.",
             loginState: true
         };
@@ -81,7 +81,7 @@ Vue.component('login-pane',{
                     <!-- <form action="/users/login" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8"> -->
                     <form name="login-form" class="login-form" action="" method="post">
                         <div class="form-group">
-                            <h1 class="input-hdr center">Log in</h1>
+                            <h1 class="input-hdr center">LOG IN</h1>
                             <div class="input-group">
                             <input name="data[User][username]"
                 required="required" class="form-control mx-auto" placeholder="Username" maxlength="255" type="text" id="UserUsername">
@@ -137,7 +137,6 @@ Vue.component('signup-pane',{
 
                             <i class="glyphicon glyphicon-lock"></i>
                             </div>
-                            <center><a href=""><p class="grey-text"><i>Forgot your password?</i></p></a></center>
                         </div>
                         <div class="center form-group">
                             <button type="button " class="form-btn btn
@@ -155,8 +154,8 @@ let app = new Vue({
     data: {
         currentLayout: 0,
         loginState: true,
-        leftPaneClassState1: "col-md-5 col-sm-12 col-xs-12",
-        leftPaneClassState2: "col-md-8 col-sm-12 col-xs-12",
+        leftPaneClassState1:  "col-md-5 col-sm-12 col-xs-12",
+        leftPaneClassState2:  "col-md-8 col-sm-12 col-xs-12",
         rightPaneClassState1: "col-md-7 col-sm-12 col-xs-12",
         rightPaneClassState2: "col-md-4 col-sm-12 col-xs-12"
 
@@ -164,11 +163,11 @@ let app = new Vue({
     computed:{
         leftPaneClass(){
             return this.loginState ? this.leftPaneClassState1 :
-                this.leftPanelClassState2;
+                this.leftPaneClassState2;
         },
         rightPaneClass() {
             return this.loginState ? this.rightPaneClassState1 :
-                this.rightPanelClassState2;
+                this.rightPaneClassState2;
         }
     },
     methods: {
