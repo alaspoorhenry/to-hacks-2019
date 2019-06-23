@@ -35,37 +35,35 @@ mongoose.connect(connectionString, { useNewUrlParser: true }, function(
   }
   console.log("Cluster connected!");
 });
-let db = mongoose.connection;
 
 const getUsers = require("./GET/user");
-const postUsers = require("./POST/user");
 
-//app.use("/api", postUsers);
+app.use("/api", getUsers);
 
 const PORT = 3000;
 
-app.post("/test/", (req, res) => {
-  let username = "test";
-  let password = "test";
-  user.findOne({ username: username }, (err, usr) => {
-    if (err) return res.status(500).json({ error: err });
-    if (usr)
-      return res.status(409).end("username " + username + " already exists");
-    const newUser = new user();
-    newUser.username = username;
-    newUser.save(err => {
-      if (err) return res.status(500).json({ error: err });
-      return res.json("user " + username + " signed up");
-    });
-  });
-});
+// app.post("/test/", (req, res) => {
+//   let username = "test";
+//   let password = "test";
+//   user.findOne({ username: username }, (err, usr) => {
+//     if (err) return res.status(500).json({ error: err });
+//     if (usr)
+//       return res.status(409).end("username " + username + " already exists");
+//     const newUser = new user();
+//     newUser.username = username;
+//     newUser.save(err => {
+//       if (err) return res.status(500).json({ error: err });
+//       return res.json("user " + username + " signed up");
+//     });
+//   });
+// });
 
-app.get("/test/", (req, res) => {
-  user.find({}, (err, usr) => {
-    if (err) return res.status(500).json(err);
-    return res.status(200).json(usr);
-  });
-});
+// app.get("/test/", (req, res) => {
+//   user.find({}, (err, usr) => {
+//     if (err) return res.status(500).json(err);
+//     return res.status(200).json(usr);
+//   });
+// });
 
 app.listen(PORT, () => {
   console.log("Started on :", PORT);
