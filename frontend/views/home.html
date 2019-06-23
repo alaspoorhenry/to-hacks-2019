@@ -5,12 +5,360 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./index.css">
+<style>
+html{
+    width:100%;
+    height:100%;
+    min-height:100%;
+}
+#login img{
+    margin: 10px 0;
+}
+#login .center {
+    text-align: center;
+}
+.form-control{
+    max-width:300px;
+}
+.mssg-container{
+    background-color: rgb(38,64,120);
+    display:flex;
+    flex-flow: column;
+    height:100vh;
+    padding: 0px 25px;
+}
+
+.form-container{
+    display:flex;
+    flex-flow: column;
+    height:100vh;
+}
+.mssg-text-hdr{
+    color:white;
+    font-size: 54px;
+    font-family: 'Merriweather', serif;
+}
+.mssg-text-body{
+    color:white;
+    font-size: 32px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.mssg-text-footer{
+    color:white;
+    font-size: 32px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.text-body{
+  font-family: 'Merriweather', serif;
+}
+.input-hdr{
+    font-size:120px;
+    font-family: 'Merriweather', serif;
+    padding: 0px 10px;
+}
+#login .login-form {
+    padding:0px 25px;
+}
+
+div#login{
+    display:flex;
+    flex-flow: column;
+    height:100%;
+    min-height:100%;
+}
+
+.form-btn{
+    background-color: rgb(178,59,67);
+    color: white;
+}
+
+.bottom-right{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.grey-text{
+    color: grey;
+}
+
+.form-btn::hover{
+    background-color: white;
+    color:black;
+}
+.btn-light:hover{
+    border-color: rgb(178,59,67);
+}
+.top-bar{
+    min-height:60px;
+    height:60px;
+    background-color: rgb(38,64,120);
+}
+.site-name{
+    color:white;
+    font-size: 28px;
+    float:left;
+    font-family: 'Merriweather', serif;
+    margin-left: 30px;
+    margin-top:10px;
+}
+.side-bar{
+    background-color: rgb(233,233,233);
+    min-height:100vh;
+}
+
+.main-content{
+    min-height:100vh;
+}
+
+.upload-btn{
+    margin-top: 40px;
+    height:60px;
+    width: 120px;
+}
+
+.h-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ margin-left:2px;
+ margin-right:2px;
+ height:1px;
+ width:100%;
+ border-top:1px solid black;
+}
+
+.home-icon{
+    background-image:"../../media/icons/home.svg";
+    height:2px;
+    width:2px;
+    margin-left:5px;
+}
+
+.page-header{
+    margin-top:50px;
+    font-size:54px;
+}
+
+.inner-page-header{
+    margin-top:25px;
+    font-size: 36px;
+}
+
+#upload-vid-btn-container{
+    background-color:rgb(233,233,233);
+    height:250px;
+    width:90%;
+}
+.page-content{
+    margin-left: 50px;
+}
+#page-upload-btn{
+
+}
+h3.nav-link{
+    font-size:18px;
+}
+
+
+* {border:0;outline:0;}
+
+label#largeFile:after {
+  position:absolute;
+  width:60%;
+  max-width:800px;
+  content:"Upload your file";
+  left:0;
+  right:0;
+  margin:50px auto;
+  text-align:center;
+  padding:50px 0px 50px 0px;
+  border-radius:10px;
+  border:5px dashed #ccc;
+  color:#ccc;
+  font-family:"Helvetica Neue", Helvetica, Arial;
+  font-size:30px;
+}
+
+label#largeFile:hover:after {
+  background:#ccc;
+  color:#fff;
+  cursor:pointer;
+}
+
+
+label#largeFile input#file {
+    width: 0px;
+    height: 0px;
+}
+
+#fileSelector{
+    width:100%;
+    height:50vh;
+}
+
+#hidden-file-selector{
+    display:none;
+}
+
+</style>
+<style>
+/* GENERAL STYLES */
+body {
+	font-family: Arial, San-Serif;
+	font-size: 100%;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+ul li {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+}
+p {
+	font-size: 13px;
+	line-height: 1.3em;
+}
+.container {
+	margin: 0 auto;
+	width: 960px;
+}
+
+/* HEADER */
+.header {
+	padding: 50px 0;
+	background-color: yellowgreen;
+}
+.header h1,
+.header h2 {
+	color: greenyellow;
+	text-align: center;
+}
+
+/* NAVIGATION */
+.page-navigation {
+	background-color: #222;
+	border-color: #101010;
+	min-height: 64px;
+}
+.page-navigation li {
+	float: left;
+	width: 100px;
+}
+.page-navigation a {
+	display: block;
+	color: #9d9d9d;
+	line-height: 4em;
+	font-weight: bold;
+	text-align: center;
+}
+.page-navigation li a:hover {
+	color: yellowgreen;
+	background-color: black;
+}
+
+/* LOGIN FORM */
+.login {
+	padding: 15px 0;
+	float: right;
+}
+.login input[type="text"],
+.login input[type="password"] {
+	padding: 5px;
+	margin-right: 5px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	outline: none;
+}
+.login input[type="submit"] {
+	padding: 5px 15px;
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+}
+.login input[type="submit"]:hover,
+button:hover {
+	background-color: darkgrey;
+	color: white;
+}
+
+/* MAIN PART */
+.collections {
+	overflow: auto;
+}
+.collection-title {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #777;
+	font-size: 36px;
+}
+.collection-title small {
+	color: #777;
+	font-size: 70%;
+}
+.collection-item-outer {
+	display: inline-block;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 33.33%;
+	box-sizing: border-box;
+}
+.collections > div:first-child {
+	padding-left: 0;
+	padding-right: 10px;
+}
+.collections > div:last-child {
+	padding-right: 0;
+	padding-left: 10px;
+}
+.collection-item {
+	border: 1px solid #959595;
+}
+.collection-item img,
+.collection-item video {
+	width: 100%;
+}
+.collection-text {
+	padding: 20 20px 20px 20px;
+        width:300px;
+}
+.collection-text h3 {
+	color: yellowgreen;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.collection-text p {
+	height: 80px;
+	overflow: hidden;
+}
+.collection-text button {
+	padding: 10px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	outline: none;
+}
+
+.video-thumbnail{
+    padding:10px;
+}
+
+/* FOOTER */
+.footer {
+	background-color: yellowgreen;
+	color: white;
+	padding: 20px 0;
+	margin-top: 30px;
+}
+
+</style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
@@ -18,15 +366,117 @@
 <body>
     <div id="home">
         <div class="top-bar row">
-            <h1 class="site-name mr-auto">{{siteName}}</h1>
+            <a href=""> <h1 class="site-name">{{siteName}}</h1></a>
+            <div accountStuff>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="side-bar col-md-2">
+                <center>
+                <button type="button " class="upload-btn form-btn btn
+                btn-light mx-auto" @click="fileSelection">Upload+</button>
+                <input type="file"
+                       id="hidden-file-selector"
+                       @change="videoSrcChanged($event)"
+                       ref="fileInput" />
+                <div class="hdivider"></div>
+                <div class="link-grp side-bar-link">
+                    <a href="">
+                        <span class="home-icon"></span>
+                        <h3 class="nav-link">Home</h3>
+                    </a>
+                    <a href="">
+                        <span class="home-icon"></span>
+                        <h3 class="nav-link">Logout</h3>
+                    </a>
+                </div>
+
+                </center>
+
             </div>
-            <div class="col-md-10">
-            </div>
+            <div class="col-md-10 main-content">
+                <!-- <h1 class="page-content page-header">HOME</h1> -->
+                <!-- <div id="upload-vid-btn-container" class="page-content">
+                     <center><button id="page-upload-btn" class="upload-btn form-btn btn
+                     btn-light">Upload+</button></center>
+                     </div> -->
+                <div id="fileSelector">
+                    <label id="largeFile" for="file">
+                        <input type="file"
+                            id="file"
+                            @change="videoSrcChanged($event)" />
+                    </label>
+                </div id="video-analysis" >
+                <center>
+                <label id="video-name" v-if="videoUploaded">{{videoSrc}}</label>
+                <div v-if="videoUploaded">
+<iframe width="560" height="315" src="https://www.videoindexer.ai/embed/player/00000000-0000-0000-0000-000000000000/9a296c6ec3" frameborder="0" allowfullscreen></iframe>
+<iframe width="680" height="780" src="https://www.videoindexer.ai/embed/insights/00000000-0000-0000-0000-000000000000/9a296c6ec3/?version=2" frameborder="0" allowfullscreen></iframe>
+
+                </div>
+                </center>
+                </div>
         </div>
     </div>
-    <script src="./homeApp.js"></script>
+
+    <!-- <script src="./homeApp.js"></script> -->
+
+<script src="https://breakdown.blob.core.windows.net/public/vb.widgets.mediator.js"></script>
+    <script>
+Vue.component("video-container",{
+    props:['thumbnailsrc','videotitle','videotext'],
+    template:`
+<div>
+    <div class="collection-item">
+        <div class="collection-text">
+                <h1>{{videotitle}}</h1>
+                <img
+                    :src="thumbnailsrc" alt="List
+            picture" class="video-thumbnail" width="" height="">
+                <p>
+                {{videotext}}
+                </p>
+        </div>
+    </div>
+</div>
+`
+});
+
+
+let app = new Vue({
+    el: "#home",
+    data: {
+        siteName: "PROPERGANDA",
+        videoSrc: "",
+        videoUploaded: false
+    },
+    computed:{
+        leftPaneClass(){
+            return this.loginState ? this.leftPaneClassState1 :
+                this.leftPaneClassState2;
+        },
+        rightPaneClass() {
+            return this.loginState ? this.rightPaneClassState1 :
+                this.rightPaneClassState2;
+        },
+    },
+    methods: {
+        changeState(){
+            this.loginState = !this.loginState;
+        },
+        videoSrcChanged(event){
+            this.videoSrc = event.srcElement.value;
+            if(this.videoSrc != "" && this.videoSrc.indexOf(".mp4")
+               !== -1){
+                this.videoUploaded = true;
+            }
+        },
+        fileSelection(){
+            this.$refs.fileInput.click();
+        }
+    },
+});
+
+    </script>
 </body>
 </html>

@@ -9,14 +9,8 @@ html{
 #login .center {
     text-align: center;
 }
-/* #login .login {
-max-width: 300px;
-margin: 35px auto;
-} */
-
 .form-control{
     max-width:300px;
-    /* margin:35px auto; */
 }
 .mssg-container{
     background-color: rgb(38,64,120);
@@ -24,17 +18,12 @@ margin: 35px auto;
     flex-flow: column;
     height:100vh;
     padding: 0px 25px;
-    /* overflow: auto;
-    width:100%; */
 }
 
 .form-container{
     display:flex;
     flex-flow: column;
     height:100vh;
-    /* padding: 0px 25px; */
-    /* overflow: auto;
-    width:100%; */
 }
 .mssg-text-hdr{
     color:white;
@@ -76,7 +65,6 @@ div#login{
 }
 
 .bottom-right{
-    /* vertical-align: bottom; */
     position: absolute;
     bottom: 0;
     right: 0;
@@ -89,7 +77,6 @@ div#login{
 .form-btn::hover{
     background-color: white;
     color:black;
-    /* border-color: rgb(178,59,67); */
 }
 .btn-light:hover{
     border-color: rgb(178,59,67);
@@ -101,6 +88,106 @@ div#login{
 }
 .site-name{
     color:white;
-    font-size: 24px;
+    font-size: 28px;
     float:left;
+    font-family: 'Merriweather', serif;
+    margin-left: 30px;
+    margin-top:10px;
+}
+.side-bar{
+    background-color: rgb(233,233,233);
+    min-height:100vh;
+}
+
+.main-content{
+    min-height:100vh;
+}
+
+.upload-btn{
+    margin-top: 40px;
+    height:60px;
+    width: 120px;
+}
+
+.h-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ margin-left:2px;
+ margin-right:2px;
+ height:1px;
+ width:100%;
+ border-top:1px solid black;
+}
+
+.home-icon{
+    background-image:"../../media/icons/home.svg";
+    height:2px;
+    width:2px;
+    margin-left:5px;
+}
+
+.page-header{
+    margin-top:50px;
+    font-size:54px;
+}
+
+.inner-page-header{
+    margin-top:25px;
+    font-size: 36px;
+}
+
+#upload-vid-btn-container{
+    background-color:rgb(233,233,233);
+    height:250px;
+    width:90%;
+}
+.page-content{
+    margin-left: 50px;
+}
+#page-upload-btn{
+
+}
+h3.nav-link{
+    font-size:18px;
+}
+
+
+* {border:0;outline:0;}
+
+label#largeFile:after {
+  position:absolute;
+  width:60%;
+  max-width:800px;
+  content:"Upload your file";
+  left:0;
+  right:0;
+  margin:50px auto;
+  text-align:center;
+  padding:50px 0px 50px 0px;
+  border-radius:10px;
+  border:5px dashed #ccc;
+  color:#ccc;
+  font-family:"Helvetica Neue", Helvetica, Arial;
+  font-size:30px;
+}
+
+label#largeFile:hover:after {
+  background:#ccc;
+  color:#fff;
+  cursor:pointer;
+}
+
+
+label#largeFile input#file {
+    width: 0px;
+    height: 0px;
+}
+
+#fileSelector{
+    width:100%;
+    height:50vh;
+}
+
+#hidden-file-selector{
+    display:none;
 }

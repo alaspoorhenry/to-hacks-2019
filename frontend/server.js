@@ -72,18 +72,18 @@ MongoClient.connect(connectionString, { useNewUrlParser: true }, function(
 
 //Application Routes | Links
 app.use(express.static("public"));
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + "/views/login.html");
+app.get("/login", function(request, response) {
+  response.sendFile(__dirname + "/views/index.html");
 });
 
 app.use(express.static("public"));
 app.get("/register", function(request, response) {
-  response.sendFile(__dirname + "/views/register.html");
+  response.sendFile(__dirname + "/views/index.html");
 });
 
 app.use(express.static("public"));
-app.get("/home", function(request, response) {
-  response.sendFile(__dirname + "/views/index.html");
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + "/views/home.html");
 });
 
 //DB QUERIES, routes to test that the MongoDB queries are working
