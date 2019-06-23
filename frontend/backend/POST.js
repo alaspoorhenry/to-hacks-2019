@@ -4,9 +4,19 @@ const User = require("./modelUser.js");
 const Media = require("./modelMedia.js");
 const { ObjectID } = require("mongodb");
 const middleware = require("./middleware");
+const multer = require("multer");
+const Image = require("./modelPicture.js");
+
+const storage = require("multer-gridfs-storage")({
+  url: "mongodb+srv://admin:12345@firstcluster-trvlr.azure.mongodb.net/tohacks"
+});
+
+const upload = multer({ storage: storage });
+
+const sUpload = upload.single("image");
 
 // expect username and password and email for signup
-router.post("/signup/", async function(req, res) {
+router.post("/signup/", sUpload, async function(req, res) {
   if (!("name" in req.body)) return res.status(400).end("username is missing");
   if (!("password" in req.body))
     return res.status(400).end("password is missing");
@@ -19,7 +29,11 @@ router.post("/signup/", async function(req, res) {
     return res.status(400).end("ERROR: User names must be unique");
   }
   const toInsert = new User(req.body);
-  db.collection("users").insert(toInsert);
+  let Image;
+  if (req.body.Image) {
+    Image = new Image(req.body, Image);
+  }
+  db.collection("users").insert(toInsert, Image ? Image : null);
   return res.redirect("/");
 });
 

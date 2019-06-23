@@ -5,3 +5,5 @@ class Image {
     this.date = Date.now();
   }
 }
+
+module.exports = Image;
