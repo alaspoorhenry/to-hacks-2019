@@ -1,16 +1,16 @@
-Vue.component('welcome-pane', {
-    data: function(){
-        return {
-            welcomeHeader: "WELCOME BACK",
-            welcomeText: "Log in to help us serve you best.",
-        };
-    },
-    methods: {
-        updateState(){
-            this.$emit('change-state');
-        }
-    },
-    template: `
+Vue.component("welcome-pane", {
+  data: function() {
+    return {
+      welcomeHeader: "WELCOME BACK",
+      welcomeText: "Log in to help us serve you best."
+    };
+  },
+  methods: {
+    updateState() {
+      this.$emit("change-state");
+    }
+  },
+  template: `
 
                 <div class="center mssg-container justify-content-center">
                     <div class="mssg-text">
@@ -31,21 +31,21 @@ Vue.component('welcome-pane', {
 `
 });
 
-Vue.component('join-pane', {
-    data: function(){
-        return {
-            joinHeader: "JOIN US",
-            joinText: "Become a part of the community today.",
-            loginState: true
-        };
-    },
-    methods: {
-        updateState(){
-            this.$emit('change-state');
-            console.log("mongoose");
-        }
-    },
-    template: `
+Vue.component("join-pane", {
+  data: function() {
+    return {
+      joinHeader: "JOIN US",
+      joinText: "Become a part of the community today.",
+      loginState: true
+    };
+  },
+  methods: {
+    updateState() {
+      this.$emit("change-state");
+      console.log("mongoose");
+    }
+  },
+  template: `
 
                 <div class="center mssg-container justify-content-center">
                     <div class="mssg-text">
@@ -66,15 +66,11 @@ Vue.component('join-pane', {
 `
 });
 
-
-Vue.component('login-pane',{
-
-    data: function(){
-        return{
-
-        };
-    },
-    template:`
+Vue.component("login-pane", {
+  data: function() {
+    return {};
+  },
+  template: `
                 <div class="login form-container justify-content-center">
                     <!-- <div class="center">
                          </div> -->
@@ -105,36 +101,27 @@ Vue.component('login-pane',{
 `
 });
 
-Vue.component('signup-pane',{
-
-    template:`
+Vue.component("signup-pane", {
+  template: `
                 <div class="login form-container justify-content-center">
-                    <!-- <div class="center">
-                         </div> -->
-                    <!-- <form action="/users/login" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8"> -->
-                    <form name="login-form" class="login-form" action="" method="post">
+                    <form name="login-form" class="login-form" action="/api/signup/" method="post">
                         <div class="form-group">
                             <h1 class="input-hdr center">Sign up</h1>
                             <div class="input-group">
-
-                            <input name="data[User][fullname]"
+                            <input name="name"
                 required="required" class="form-control mx-auto"
- placeholder="Full Name" maxlength="255" type="text" id="UserFullname">
-
-                           <input name="data[User][password]"
+ placeholder="Full Name" maxlength="255" type="text">
+                           <input name="password"
                 required="required" class="form-control mx-auto" placeholder="Password" type="password" id="UserRepeatPassword">
-
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                            <input name="data[User][email]"
-                required="required" class="form-control mx-auto" placeholder="Email" type="email" id="UserEmail">
-                           <input name="data[User][password]"
+                            <input name="email"
+                required="required" class="form-control mx-auto" placeholder="Email" type="email">
+                           <input name="repass"
                 required="required" class="form-control mx-auto"
  placeholder="Repeat Password" type="password" id="UserPasswordConfirm">
-
-
                             <i class="glyphicon glyphicon-lock"></i>
                             </div>
                         </div>
@@ -148,31 +135,31 @@ Vue.component('signup-pane',{
 `
 });
 
-
 let app = new Vue({
-    el: "#login",
-    data: {
-        currentLayout: 0,
-        loginState: true,
-        leftPaneClassState1:  "col-md-5 col-sm-12 col-xs-12",
-        leftPaneClassState2:  "col-md-8 col-sm-12 col-xs-12",
-        rightPaneClassState1: "col-md-7 col-sm-12 col-xs-12",
-        rightPaneClassState2: "col-md-4 col-sm-12 col-xs-12"
-
+  el: "#login",
+  data: {
+    currentLayout: 0,
+    loginState: true,
+    leftPaneClassState1: "col-md-5 col-sm-12 col-xs-12",
+    leftPaneClassState2: "col-md-8 col-sm-12 col-xs-12",
+    rightPaneClassState1: "col-md-7 col-sm-12 col-xs-12",
+    rightPaneClassState2: "col-md-4 col-sm-12 col-xs-12"
+  },
+  computed: {
+    leftPaneClass() {
+      return this.loginState
+        ? this.leftPaneClassState1
+        : this.leftPaneClassState2;
     },
-    computed:{
-        leftPaneClass(){
-            return this.loginState ? this.leftPaneClassState1 :
-                this.leftPaneClassState2;
-        },
-        rightPaneClass() {
-            return this.loginState ? this.rightPaneClassState1 :
-                this.rightPaneClassState2;
-        }
-    },
-    methods: {
-        changeState(){
-            this.loginState = !this.loginState;
-        }
-    },
+    rightPaneClass() {
+      return this.loginState
+        ? this.rightPaneClassState1
+        : this.rightPaneClassState2;
+    }
+  },
+  methods: {
+    changeState() {
+      this.loginState = !this.loginState;
+    }
+  }
 });

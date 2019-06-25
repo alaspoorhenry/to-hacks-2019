@@ -34,7 +34,7 @@ router.post("/signup/", sUpload, async function(req, res) {
     Image = new Image(req.body, Image);
   }
   db.collection("users").insert(toInsert, Image ? Image : null);
-  return res.redirect("/");
+  return res.redirect("/login/");
 });
 
 router.post("/media/", middleware.isAuthenticated, async function(req, res) {

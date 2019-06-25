@@ -193,16 +193,7 @@ app.post("/api/signin/", async function(req, res) {
       maxAge: 60 * 60 * 24 * 7 // 1 week in number of seconds
     })
   );
-  return res.redirect("/home/");
-});
-
-app.get("/testFind", (req, res) => {
-  db.collection("users")
-    .find()
-    .toArray((err, result) => {
-      if (err) return console.log(err);
-      else console.log(result);
-    });
+  return res.redirect("/");
 });
 
 app.get("/api/signout/", function(req, res) {
