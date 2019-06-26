@@ -19,7 +19,7 @@ const TextAnalyticsAPIClient = require("azure-cognitiveservices-textanalytics");
 const { JSDOM } = jsdom;
 
 let credentials = new CognitiveServicesCredentials(
-  "a93f0a47ddbf49139bba3d4cca3fdd90"
+  "APIKEY"
 );
 
 let client = new TextAnalyticsAPIClient(
